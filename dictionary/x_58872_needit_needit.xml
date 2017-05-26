@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element audit="true" extends="task" label="NeedIt" max_length="40" name="x_58872_needit_needit" type="collection">
+    <element audit="true" extends="task" label="NeedIt" max_length="40" name="x_58872_needit_needit" sizeclass="3" type="collection">
         <element attributes="edge_encryption_enabled=true" label="New Field 1" max_length="40" name="new_field_1" type="string"/>
         <element label="New Field 2" max_length="40" name="new_field_2" type="string"/>
         <element attributes="edge_encryption_enabled=true" choice="1" label="New Choice" max_length="40" name="u_choice_2" type="string">
@@ -20,6 +20,7 @@
         <element label="New Date" max_length="40" name="u_glide_date_4" type="glide_date"/>
         <element label="When Needed" mandatory="true" max_length="40" name="u_glide_date_5" type="glide_date"/>
         <element label="New Field 3" max_length="40" name="u_integer_1" type="integer"/>
+        <element label="Other" max_length="40" name="u_other" type="string"/>
         <element label="New Reference" max_length="32" name="u_reference_1" reference="cmdb_ci_appl_dot_net" type="reference"/>
         <element label="Requested for" mandatory="true" max_length="32" name="u_reference_2" reference="sys_user" type="reference"/>
         <element label="Requested for" mandatory="true" max_length="32" name="u_requested_for" reference="sys_user" type="reference"/>
@@ -29,18 +30,20 @@
                 <element label="Facilities" sequence="1" value="facilities"/>
                 <element label="Legal" sequence="2" value="legal"/>
                 <element label="Your Department Choice" sequence="3" value="your_choice"/>
+                <element label="Other" sequence="4" value="Other"/>
             </choice>
         </element>
-        <element attributes="edge_encryption_enabled=true" choice="3" default="legal1" label="What needed" mandatory="true" max_length="40" name="u_what_needed" type="string">
+        <element attributes="edge_encryption_enabled=true" choice="3" default="legal1" dependent="u_request_type" dependent_on_field="u_request_type" label="What needed" mandatory="true" max_length="40" name="u_what_needed" type="string" use_dependent_field="true">
             <choice>
-                <element label="Human Resources 1" sequence="0" value="hr1"/>
-                <element label="Human Resources 2" sequence="1" value="hr2"/>
-                <element label="Facilities 1" sequence="2" value="facilities1"/>
-                <element label="Facilities 2" sequence="3" value="facilities2"/>
-                <element label="Legal 1" sequence="4" value="legal1"/>
-                <element label="Legal 2" sequence="5" value="legal2"/>
-                <element label="Your Department Choice 1" sequence="6" value="your_choice1"/>
-                <element label="Your Department Choice 2" sequence="7" value="your_choice2"/>
+                <element dependent_value="Other" label="Other" value="other"/>
+                <element dependent_value="hr" label="Human Resources 1" sequence="0" value="hr1"/>
+                <element dependent_value="hr" label="Human Resources 2" sequence="1" value="hr2"/>
+                <element dependent_value="facilities" label="Facilities 1" sequence="2" value="facilities1"/>
+                <element dependent_value="facilities" label="Facilities 2" sequence="3" value="facilities2"/>
+                <element dependent_value="legal" label="Legal 1" sequence="4" value="legal1"/>
+                <element dependent_value="legal" label="Legal 2" sequence="5" value="legal2"/>
+                <element dependent_value="your_choice" label="Your Department Choice 1" sequence="6" value="your_choice1"/>
+                <element dependent_value="your_choice" label="Your Department Choice 2" sequence="7" value="your_choice2"/>
             </choice>
         </element>
         <element label="When needed" mandatory="true" max_length="40" name="u_when_needed" type="glide_date"/>
